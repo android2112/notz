@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-    private String[] mNome;
+    private String[] mDataset;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -23,7 +23,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         public NotesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
             TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.activity_main, parent, false);
+                    .inflate(R.layout.row_note, parent, false);
 
             ViewHolder vh = new ViewHolder(v);
             return vh;
@@ -32,8 +32,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         }
 
         @Override
-        public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
-            holder.mTextView.setText(mNome[position]);
+        public void onBindViewHolder(NotesAdapter.ViewHolder holder, int position) {
+            NotesAdapter.ViewHolder  noteVH = (NotesAdapter.ViewHolder)holder;
+            noteVH.mTextView.setText(mDataset[position]);
 
         }
 
@@ -41,12 +42,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         @Override
         public int getItemCount() {
 
-                return mNome.length;
+                return mDataset.length;
         }
 
     public NotesAdapter(String [] nome) {
 
-        mNome=nome;
+        mDataset=nome;
 
     }
 }

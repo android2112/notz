@@ -1,54 +1,44 @@
 package com.example.mark.notz;
 
-import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
-
+public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
     private String[] mDataset;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
-        public ViewHolder(TextView v) {
+        public TextView mTextViewContent;
+        public CardView cardView;
+
+        public ViewHolder(View v) {
             super(v);
-            mTextView = v;
+            cardView = (CardView)itemView.findViewById(R.id.cv);
+            mTextView = (TextView)itemView.findViewById(R.id.title_tv);
+            mTextViewContent = (TextView)itemView.findViewById((R.id.text_tv));
         }
-
     }
-        @NonNull
-        @Override
-        public NotesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-            TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_note, parent, false);
+    public NotesAdapter(String[] myDataset) {
+        mDataset = myDataset;
+    }
 
-            ViewHolder vh = new ViewHolder(v);
-            return vh;
+    @Override
+    public NotesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.row_note, parent, false);
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
+    }
 
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.mTextView.setText(mDataset[position]);
+    }
 
-        }
-
-        @Override
-        public void onBindViewHolder(NotesAdapter.ViewHolder holder, int position) {
-            NotesAdapter.ViewHolder  noteVH = (NotesAdapter.ViewHolder)holder;
-            noteVH.mTextView.setText(mDataset[position]);
-
-        }
-
-
-        @Override
-        public int getItemCount() {
-
-                return mDataset.length;
-        }
-
-    public NotesAdapter(String [] nome) {
-
-        mDataset=nome;
-
+    public int getItemCount() {
+        return mDataset.length;
     }
 }
-

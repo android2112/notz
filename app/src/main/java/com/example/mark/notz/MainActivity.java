@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
@@ -22,6 +23,7 @@ public class MainActivity extends Activity {
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
 
         mAdapter = new NotesAdapter(myDataSet);
         mRecyclerView.setAdapter(mAdapter);

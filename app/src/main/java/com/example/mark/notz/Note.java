@@ -4,12 +4,33 @@ public class Note {
 
     private String titolo;
     private String contenuto;
-
+    private int id;
+    private boolean isOnTop;
 
     public Note(String titolo, String contenuto) {
         this.titolo = titolo;
         this.contenuto = contenuto;
+
+
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isOnTop() {
+        return isOnTop;
+    }
+
+    public void setOnTop(boolean onTop) {
+        isOnTop = onTop;
+    }
+
+
 
 
     public String getTitolo() {

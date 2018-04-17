@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         Note spesadir = new Note("Spesa","comprare la frutta ecceccecececececececececcecece");
         myDataset.add(spesadir);
 
+        Note nspesa = new Note("spesa","ghhgdfkhjdslfhjsdklfhjsdfhshfjksdhfjlsdhjfldhsfjhdsjflhdsjfhljsdhfsdhf");
+        myDataset.add(nspesa);
 
         mAdapter = new NotesAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);

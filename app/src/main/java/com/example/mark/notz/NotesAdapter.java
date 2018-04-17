@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
-    private String[] mDataset;
+    private ArrayList<Note> mDataset;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
@@ -18,12 +20,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
         public ViewHolder(View v) {
             super(v);
             cardView = (CardView)itemView.findViewById(R.id.cv);
-            mTextView = (TextView)itemView.findViewById(R.id.title_tv);
-            mTextViewContent = (TextView)itemView.findViewById((R.id.text_tv));
+            mTextView = (TextView)itemView.findViewById(R.id.title);
+            mTextViewContent = (TextView)itemView.findViewById((R.id.text));
         }
     }
 
-    public NotesAdapter(String[] myDataset) {
+    public NotesAdapter(ArrayList<Note> myDataset) {
         mDataset = myDataset;
     }
 
@@ -35,10 +37,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset[position]);
+
+        holder.mTextView.setText(mDataset.get(position).getTitle());
+        holder.mTextViewContent.setText(mDataset.get(position).getDescription());
+
     }
 
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }

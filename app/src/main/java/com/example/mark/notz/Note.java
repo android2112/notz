@@ -2,16 +2,31 @@ package com.example.mark.notz;
 
 public class Note {
 
-    private String titolo;
-    private String contenuto;
+    private String title,description;
     private int id;
-    private boolean isOnTop;
-
-    public Note(String titolo, String contenuto) {
-        this.titolo = titolo;
-        this.contenuto = contenuto;
+    private boolean isShownOnTop;
 
 
+    public Note(String title, String description){
+        this.title = title;
+        this.description = description;
+
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
@@ -22,30 +37,11 @@ public class Note {
         this.id = id;
     }
 
-    public boolean isOnTop() {
-        return isOnTop;
+    public boolean isShownOnTop() {
+        return isShownOnTop;
     }
 
-    public void setOnTop(boolean onTop) {
-        isOnTop = onTop;
-    }
-
-
-
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-
-    public String getContenuto() {
-        return contenuto;
-    }
-
-    public void setContenuto(String contenuto) {
-        this.contenuto = contenuto;
+    public void setShownOnTop(boolean shownOnTop) {
+        isShownOnTop = shownOnTop;
     }
 }

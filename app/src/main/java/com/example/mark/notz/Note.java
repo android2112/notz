@@ -1,5 +1,7 @@
 package com.example.mark.notz;
 
+import android.content.Intent;
+
 public class Note {
 
     private String title,description;
@@ -44,4 +46,7 @@ public class Note {
     public void setShownOnTop(boolean shownOnTop) {
         isShownOnTop = shownOnTop;
     }
+
+
+
 }

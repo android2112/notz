@@ -1,24 +1,40 @@
 package com.example.mark.notz;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuView;
+import android.support.v7.widget.AlertDialogLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private NotesAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Button button;
     private TextView prova;
@@ -32,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mRecyclerView =findViewById(R.id.rv);
-        button=findViewById(R.id.add_button);
+        //button= findViewById(R.id.fab);
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, NoteActivity.class);
-                startActivity(myIntent);
+            public void onClick(View view) {
+                showdialog();
             }
         });
 
@@ -85,15 +101,30 @@ public class MainActivity extends AppCompatActivity {
         myDataset.add(d);
 
 
+    }
+    private void showdialog(){
+
+        AlertDialog.Builder ab = new AlertDialog.Builder(this);
+
+        ab.setView(R.layout.note_dialog);
+        ab.setTitle(R.string.dialog);//mettere stringhe nella cartella
+        ab.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Note note = new Note("titolo","contenuto");
+                mAdapter.addNote(note);
 
 
+            }
+        });
+        ab.setNegativeButton(R.string.dialog_negative, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
+            }
+        });
 
-
-
-
-
-
+        ab.show();
 
 
 

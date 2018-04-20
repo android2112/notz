@@ -60,11 +60,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     }
 
+
+    public void addNote(Note note){
+        mDataset.add(note);
+        notifyDataSetChanged();
+        // notifyItemInserted();
+
+    }
+
     @Override
     public int getItemCount() {
         return mDataset.size();
     }
 
 
-
 }
+

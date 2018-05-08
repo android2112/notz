@@ -20,6 +20,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static final int EDIT_REQUEST = 1001;
+    public static final int RESULT_DELETE=1002;
+
     private RecyclerView mRecyclerView;
     private NotesAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -78,6 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.updateNote(editedNotePosition,
                         data.getStringExtra("title"),
                         data.getStringExtra("description"));
+
+
+            }else{
+                if(resultCode == RESULT_DELETE ){
+                    int editedNotePosition = data.getIntExtra("position", -1);
+                    mAdapter.cancelNote(editedNotePosition);
+
+
+                }
+
 
 
             }

@@ -16,8 +16,11 @@ public class NoteActivity extends AppCompatActivity {
 
     EditText titleEt, descriptionEt;
 
-    Button editConfirmBtn;
-    Button cancel;
+    Button editConfirmBtn, deleteButton;
+
+    String title,description;
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +29,13 @@ public class NoteActivity extends AppCompatActivity {
         titleEt = (EditText) findViewById(R.id.edit_title);
         descriptionEt = (EditText) findViewById(R.id.edit_description);
         editConfirmBtn = (Button) findViewById(R.id.edit_confirm);
-        cancel = findViewById(R.id.cancel);
-
+        deleteButton = (Button) findViewById(R.id.edit_delete);
 
         //get values from launching intent
-         Intent intent = getIntent();
+        intent = getIntent();
+        title = intent.getStringExtra("title");
+        description = intent.getStringExtra("description");
 
-        String title = intent.getStringExtra("title");
-        String description = intent.getStringExtra("description");
 
         // set values to Edittexts
 
@@ -60,26 +62,10 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                int position = intent.getIntExtra("position", -1);
-
-                Intent returnIntent = new Intent();
-
-                returnIntent.putExtra("position", position);
-                setResult(MainActivity.RESULT_DELETE, returnIntent);
-
-
-
-                finish();
-            }
-        });
-
 
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -101,14 +87,14 @@ public class NoteActivity extends AppCompatActivity {
             returnIntent.putExtra("title", title);
             returnIntent.putExtra("description", description);
             returnIntent.putExtra("position", position);
-            setResult(MainActivity.RESULT_DELETE, returnIntent);
+            setResult(MainActivity.RESUL_REMOVE_NOTE, returnIntent);
 
             finish();
             return true;
         }
         if(item.getItemId() == R.id.ciao){
 
-            Toast.makeText(this,"Ciao", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Ciao",Toast.LENGTH_LONG).show();
 
             return true;
         }
@@ -117,7 +103,5 @@ public class NoteActivity extends AppCompatActivity {
     }
 
 
+
 }
-
-
-
